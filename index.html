@@ -1,0 +1,3170 @@
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build Web Pages</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "S1U0Qh7IFL726tXZR",
+        });
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Full Stack Developer specializing in React, Next.js, Node.js, AI/LLM integration. Hire me for your next project."
+    />
+    <meta property="og:title" content="Anshu Kumar | Full Stack Developer" />
+    <meta
+      property="og:description"
+      content="Modern portfolio showcasing full-stack development, AI projects, and creative solutions."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Manrope", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              primary: {
+                400: "#a78bfa",
+                500: "#8b5cf6",
+                600: "#7C3AED",
+                700: "#6d28d9",
+              },
+              accent: { cyan: "#22D3EE", amber: "#F59E0B" },
+              dark: {
+                900: "#0F172A",
+                800: "#111827",
+                700: "#1E293B",
+                600: "#334155",
+              },
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              "float-delay": "float 6s ease-in-out 2s infinite",
+              glow: "glow 2s ease-in-out infinite alternate",
+              "slide-up": "slideUp 0.6s ease-out forwards",
+              "fade-in": "fadeIn 0.8s ease-out forwards",
+              "scale-in": "scaleIn 0.5s ease-out forwards",
+              shimmer: "shimmer 2s linear infinite",
+              "bounce-gentle": "bounceGentle 2s ease-in-out infinite",
+              "spin-slow": "spin 20s linear infinite",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              glow: {
+                "0%": { boxShadow: "0 0 20px rgba(124,58,237,0.3)" },
+                "100%": { boxShadow: "0 0 40px rgba(124,58,237,0.6)" },
+              },
+              slideUp: {
+                "0%": { opacity: "0", transform: "translateY(40px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+              fadeIn: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
+              scaleIn: {
+                "0%": { opacity: "0", transform: "scale(0.9)" },
+                "100%": { opacity: "1", transform: "scale(1)" },
+              },
+              shimmer: {
+                "0%": { backgroundPosition: "-200% 0" },
+                "100%": { backgroundPosition: "200% 0" },
+              },
+              bounceGentle: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-8px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ::selection {
+        background: rgba(124, 58, 237, 0.3);
+        color: #e0d4fc;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Manrope", sans-serif;
+        overflow-x: hidden;
+      }
+      .dark body {
+        background: #0f172a;
+        color: #f1f5f9;
+      }
+      .light body {
+        background: #f8fafc;
+        color: #1e293b;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #0f172a;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 4px;
+      }
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: #7c3aed;
+      }
+      .light ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      .light ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+
+      /* Glass */
+      .glass-dark {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+      }
+      .glass-light {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
+      /* Gradient text */
+      .gradient-text {
+        background: linear-gradient(135deg, #7c3aed, #22d3ee);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .gradient-text-warm {
+        background: linear-gradient(135deg, #7c3aed, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Particles canvas */
+      #particles-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      /* Typing cursor */
+      .typing-cursor {
+        display: inline-block;
+        width: 3px;
+        height: 1.1em;
+        background: #7c3aed;
+        margin-left: 2px;
+        animation: blink 1s step-end infinite;
+        vertical-align: text-bottom;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Progress bar animation */
+      .skill-progress {
+        transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 0%;
+      }
+      .skill-progress.animated {
+        width: var(--progress);
+      }
+
+      /* Timeline line */
+      .timeline-line {
+        position: absolute;
+        left: 20px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+      }
+      .dark .timeline-line {
+        background: linear-gradient(to bottom, #7c3aed, #22d3ee, transparent);
+      }
+      .light .timeline-line {
+        background: linear-gradient(to bottom, #7c3aed, #22d3ee, transparent);
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* Card hover effect */
+      .project-card {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .project-card:hover {
+        transform: translateY(-8px);
+      }
+      .dark .project-card:hover {
+        box-shadow: 0 25px 60px -12px rgba(124, 58, 237, 0.2);
+      }
+      .light .project-card:hover {
+        box-shadow: 0 25px 60px -12px rgba(124, 58, 237, 0.15);
+      }
+
+      /* Nav active */
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #7c3aed;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Command palette overlay */
+      .cmd-overlay {
+        transition: opacity 0.2s ease;
+      }
+      .cmd-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .cmd-panel {
+        transition: all 0.2s ease;
+      }
+      .cmd-overlay.hidden .cmd-panel {
+        transform: scale(0.95) translateY(-10px);
+        opacity: 0;
+      }
+
+      /* Chat widget */
+      .chat-panel {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: scale(0.9) translateY(20px);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .chat-panel.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* Shimmer button */
+      .btn-shimmer {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-shimmer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.15),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+      .btn-shimmer:hover::before {
+        left: 100%;
+      }
+
+      /* Floating shapes */
+      .floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.15;
+        pointer-events: none;
+      }
+
+      /* Mobile menu */
+      .mobile-menu {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(100%);
+      }
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      /* Toast */
+      .toast {
+        animation:
+          slideUp 0.4s ease-out,
+          fadeOut 0.4s ease-in 2.6s forwards;
+      }
+      @keyframes fadeOut {
+        to {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Light mode overrides */
+      .light .dark-bg {
+        background: #f8fafc;
+      }
+      .light .dark-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+      }
+      .light .dark-text {
+        color: #1e293b;
+      }
+      .light .dark-text-secondary {
+        color: #64748b;
+      }
+      .light .dark-nav {
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      /* Testimonial carousel */
+      .testimonial-track {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Counter */
+      .counter {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* Filter button */
+      .filter-btn {
+        transition: all 0.3s ease;
+      }
+      .filter-btn.active {
+        background: #7c3aed;
+        color: white;
+      }
+    </style>
+  </head>
+  <body
+    class="dark:bg-dark-900 bg-slate-50 dark:text-slate-100 text-slate-800 transition-colors duration-500"
+  >
+    <!-- Floating Background Shapes -->
+    <div
+      class="floating-shape w-96 h-96 bg-primary-600 top-20 -left-48 fixed"
+      style="z-index: 0"
+    ></div>
+    <div
+      class="floating-shape w-80 h-80 bg-accent-cyan top-1/2 -right-40 fixed"
+      style="z-index: 0"
+    ></div>
+    <div
+      class="floating-shape w-64 h-64 bg-accent-amber bottom-20 left-1/3 fixed"
+      style="z-index: 0"
+    ></div>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 dark:glass-dark light:glass-light"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <img
+            src="./img/log.jpg"
+            alt="Logo"
+            class="h-9 w-9 rounded-lg object-contain transition-transform duration-300 group-hover:scale-110"
+          />
+          <span
+            class="text-xl font-bold dark:text-white text-gray-900 tracking-tight"
+            >Build<span class="gradient-text">.Web</span></span
+          >
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a
+            href="#about"
+            class="nav-link text-sm font-medium dark:text-slate-300 text-slate-600 hover:dark:text-white hover:text-gray-900 transition-colors"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="nav-link text-sm font-medium dark:text-slate-300 text-slate-600 hover:dark:text-white hover:text-gray-900 transition-colors"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="nav-link text-sm font-medium dark:text-slate-300 text-slate-600 hover:dark:text-white hover:text-gray-900 transition-colors"
+            >Projects</a
+          >
+          <a
+            href="#experience"
+            class="nav-link text-sm font-medium dark:text-slate-300 text-slate-600 hover:dark:text-white hover:text-gray-900 transition-colors"
+            >Experience</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-sm font-medium dark:text-slate-300 text-slate-600 hover:dark:text-white hover:text-gray-900 transition-colors"
+            >Contact</a
+          >
+          <button
+            onclick="openCommandPalette()"
+            class="flex items-center gap-2 px-3 py-1.5 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500 text-xs font-mono border dark:border-slate-700 border-gray-200 hover:dark:border-primary-600 hover:border-primary-600 transition-colors"
+          >
+            <i data-lucide="search" class="w-3.5 h-3.5"></i>
+            <span>Ctrl+K</span>
+          </button>
+          <button
+            onclick="toggleTheme()"
+            id="theme-toggle"
+            class="p-2.5 rounded-xl dark:bg-dark-700 bg-gray-100 dark:hover:bg-dark-600 hover:bg-gray-200 transition-all"
+            aria-label="Toggle theme"
+          >
+            <i
+              data-lucide="moon"
+              class="w-4.5 h-4.5 dark:block hidden text-slate-300"
+            ></i>
+            <i
+              data-lucide="sun"
+              class="w-4.5 h-4.5 dark:hidden block text-slate-600"
+            ></i>
+          </button>
+          <a
+            href="#contact"
+            class="btn-shimmer bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all hover:scale-105 hover:-translate-y-0.5 shadow-lg shadow-primary-600/25"
+          >
+            Hire Me
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          onclick="toggleMobileMenu()"
+          class="lg:hidden p-2.5 rounded-xl dark:bg-dark-700 bg-gray-100"
+          id="mobile-menu-btn"
+        >
+          <i
+            data-lucide="menu"
+            class="w-5 h-5 dark:text-white text-gray-700"
+          ></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="mobile-menu fixed inset-0 z-[60] dark:bg-dark-900/95 bg-white/95 backdrop-blur-xl lg:hidden"
+    >
+      <div class="p-6 flex justify-between items-center">
+        <span class="text-xl font-bold dark:text-white text-gray-900"
+          >Anshu<span class="gradient-text">.dev</span></span
+        >
+        <button
+          onclick="toggleMobileMenu()"
+          class="p-2.5 rounded-xl dark:bg-dark-700 bg-gray-100"
+        >
+          <i data-lucide="x" class="w-5 h-5 dark:text-white text-gray-700"></i>
+        </button>
+      </div>
+      <div class="flex flex-col items-center gap-6 pt-16">
+        <a
+          href="#about"
+          onclick="toggleMobileMenu()"
+          class="text-2xl font-semibold dark:text-white text-gray-900 hover:text-primary-600 transition-colors"
+          >About</a
+        >
+        <a
+          href="#skills"
+          onclick="toggleMobileMenu()"
+          class="text-2xl font-semibold dark:text-white text-gray-900 hover:text-primary-600 transition-colors"
+          >Skills</a
+        >
+        <a
+          href="#projects"
+          onclick="toggleMobileMenu()"
+          class="text-2xl font-semibold dark:text-white text-gray-900 hover:text-primary-600 transition-colors"
+          >Projects</a
+        >
+        <a
+          href="#experience"
+          onclick="toggleMobileMenu()"
+          class="text-2xl font-semibold dark:text-white text-gray-900 hover:text-primary-600 transition-colors"
+          >Experience</a
+        >
+        <a
+          href="#contact"
+          onclick="toggleMobileMenu()"
+          class="text-2xl font-semibold dark:text-white text-gray-900 hover:text-primary-600 transition-colors"
+          >Contact</a
+        >
+        <button
+          onclick="
+            toggleTheme();
+            toggleMobileMenu();
+          "
+          class="mt-4 px-6 py-3 rounded-xl dark:bg-dark-700 bg-gray-100 dark:text-white text-gray-700 font-medium"
+        >
+          Toggle Theme
+        </button>
+        <a
+          href="#contact"
+          onclick="toggleMobileMenu()"
+          class="mt-2 btn-shimmer bg-primary-600 text-white font-semibold px-8 py-3 rounded-xl"
+          >Hire Me</a
+        >
+      </div>
+    </div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section
+      id="hero"
+      class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <canvas id="particles-canvas"></canvas>
+
+      <!-- Gradient orbs -->
+      <div
+        class="absolute top-1/4 left-1/4 w-72 h-72 bg-primary-600/20 rounded-full blur-[100px] animate-float"
+      ></div>
+      <div
+        class="absolute bottom-1/4 right-1/4 w-60 h-60 bg-accent-cyan/15 rounded-full blur-[80px] animate-float-delay"
+      ></div>
+
+      <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full dark:bg-primary-600/10 bg-primary-50 border dark:border-primary-600/20 border-primary-200 mb-8 animate-fade-in"
+        >
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          <span
+            class="text-sm font-medium dark:text-primary-400 text-primary-700"
+            >Available for Opportunities</span
+          >
+        </div>
+
+        <!-- Name -->
+        <h1
+          class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 animate-slide-up"
+        >
+          <span class="dark:text-white text-gray-900">Hi, I'm </span>
+          <span class="gradient-text">Anshu</span>
+        </h1>
+
+        <!-- Typing Role -->
+        <div
+          class="text-xl sm:text-2xl md:text-3xl font-medium dark:text-slate-400 text-slate-500 mb-8 animate-slide-up"
+          style="animation-delay: 0.2s"
+        >
+          <span id="typing-text"></span><span class="typing-cursor"></span>
+        </div>
+
+        <!-- Description -->
+        <p
+          class="text-base sm:text-lg dark:text-slate-400 text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up"
+          style="animation-delay: 0.4s"
+        >
+          B.Tech CSE Student building modern web experiences with
+          <span class="dark:text-accent-cyan text-cyan-600 font-medium"
+            >React</span
+          >,
+          <span class="dark:text-accent-amber text-amber-600 font-medium"
+            >Node.js</span
+          >, and
+          <span class="dark:text-primary-400 text-primary-600 font-medium"
+            >AI/LLM</span
+          >
+          integration. Passionate about creating impactful digital solutions.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up"
+          style="animation-delay: 0.6s"
+        >
+          <a
+            href="#contact"
+            class="btn-shimmer bg-primary-600 hover:bg-primary-700 text-white font-bold text-base px-8 py-4 rounded-2xl transition-all hover:scale-105 hover:-translate-y-1 shadow-xl shadow-primary-600/30 flex items-center gap-2"
+          >
+            <i data-lucide="send" class="w-5 h-5"></i>
+            Hire Me
+          </a>
+          <a
+            href="#projects"
+            class="group dark:bg-white/5 bg-gray-100 dark:hover:bg-white/10 hover:bg-gray-200 dark:text-white text-gray-700 font-bold text-base px-8 py-4 rounded-2xl transition-all hover:scale-105 hover:-translate-y-1 border dark:border-white/10 border-gray-200 flex items-center gap-2"
+          >
+            <i data-lucide="folder-open" class="w-5 h-5"></i>
+            View Projects
+            <i
+              data-lucide="arrow-right"
+              class="w-4 h-4 transition-transform group-hover:translate-x-1"
+            ></i>
+          </a>
+
+          <a
+            href="./img/Anshu as resume .pdf"
+            onemptied="showToast('CV download started!')"
+            class="group dark:text-slate-400 text-slate-500 hover:dark:text-primary-400 hover:text-primary-600 font-semibold text-sm flex items-center gap-2 transition-colors"
+            download
+            ><i data-lucide="download" class="w-4 h-4"></i>Download CV</a
+          >
+        </div>
+
+        <!-- Social Links -->
+        <div
+          class="flex items-center justify-center gap-4 mt-12 animate-fade-in"
+          style="animation-delay: 0.8s"
+        >
+          <a
+            href="https://github.com/"
+            target="_blank"
+            class="p-3 rounded-xl dark:bg-white/5 bg-gray-100 dark:hover:bg-primary-600/20 hover:bg-primary-50 dark:text-slate-400 text-slate-500 hover:text-primary-600 transition-all hover:-translate-y-1"
+          >
+            <img
+              src="./img/github log.svg"
+              alt="GitHub"
+              class="w-5 h-5 object-contain"
+            />
+          </a>
+          <a
+            href="https://linkedin.com/"
+            target="_blank"
+            class="p-3 rounded-xl dark:bg-white/5 bg-gray-100 dark:hover:bg-primary-600/20 hover:bg-primary-50 dark:text-slate-400 text-slate-500 hover:text-primary-600 transition-all hover:-translate-y-1"
+          >
+            <img
+              src="./img/linkedin-log.svg"
+              alt="LinkedIn"
+              class="w-5 h-5 object-contain"
+            />
+          </a>
+          <a
+            href="mailto:anshukumar71012@gmail.com"
+            class="p-3 rounded-xl dark:bg-white/5 bg-gray-100 dark:hover:bg-primary-600/20 hover:bg-primary-50 dark:text-slate-400 text-slate-500 hover:text-primary-600 transition-all hover:-translate-y-1"
+          >
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </a>
+          <a
+            href="tel:+919241778197"
+            class="p-3 rounded-xl dark:bg-white/5 bg-gray-100 dark:hover:bg-primary-600/20 hover:bg-primary-50 dark:text-slate-400 text-slate-500 hover:text-primary-600 transition-all hover:-translate-y-1"
+          >
+            <i data-lucide="phone" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-gentle"
+      >
+        <div
+          class="flex flex-col items-center gap-2 dark:text-slate-500 text-slate-400"
+        >
+          <span class="text-xs font-medium tracking-widest uppercase"
+            >Scroll</span
+          >
+          <i data-lucide="chevron-down" class="w-4 h-4"></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="relative py-24 lg:py-32 px-6">
+      <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16 reveal">
+          <span
+            class="inline-block text-xs font-bold tracking-widest uppercase dark:text-primary-400 text-primary-600 mb-4"
+            >Get To Know Me</span
+          >
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 tracking-tight"
+          >
+            About <span class="gradient-text">Me</span>
+          </h2>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Left: Image & Stats -->
+          <div class="reveal reveal-delay-1">
+            <div class="relative">
+              <!-- Image container -->
+              <div
+                class="relative w-72 h-72 sm:w-80 sm:h-80 mx-auto rounded-3xl overflow-hidden border-2 dark:border-primary-600/30 border-primary-200 shadow-2xl shadow-primary-600/10"
+              >
+                <img
+                  src="./img/Anshu.png"
+                  alt="Anshu Kumar"
+                  class="w-full h-full object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent"
+                ></div>
+              </div>
+              <!-- Decorative elements -->
+              <div
+                class="absolute -top-4 -right-4 w-24 h-24 border-2 dark:border-primary-600/30 border-primary-200 rounded-2xl"
+              ></div>
+              <div
+                class="absolute -bottom-4 -left-4 w-32 h-32 border-2 dark:border-accent-cyan/30 border-cyan-200 rounded-2xl"
+              ></div>
+
+              <!-- Floating badge -->
+              <div
+                class="absolute -right-2 top-8 dark:bg-dark-700 bg-white rounded-2xl p-3 shadow-xl animate-float border dark:border-slate-700 border-gray-100"
+              >
+                <div class="flex items-center gap-2">
+                  <div
+                    class="w-8 h-8 bg-green-500/10 rounded-lg flex items-center justify-center"
+                  >
+                    <i data-lucide="code-2" class="w-4 h-4 text-green-400"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs font-bold dark:text-white text-gray-900">
+                      1+ Year
+                    </p>
+                    <p class="text-[10px] dark:text-slate-400 text-slate-500">
+                      Experience
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mt-12">
+              <div
+                class="text-center p-4 rounded-2xl dark:bg-dark-700/50 bg-gray-50 border dark:border-slate-700/50 border-gray-100"
+              >
+                <p
+                  class="text-2xl md:text-3xl font-bold gradient-text counter"
+                  data-target="4"
+                >
+                  0
+                </p>
+                <p
+                  class="text-xs dark:text-slate-400 text-slate-500 mt-1 font-medium"
+                >
+                  Projects
+                </p>
+              </div>
+              <div
+                class="text-center p-4 rounded-2xl dark:bg-dark-700/50 bg-gray-50 border dark:border-slate-700/50 border-gray-100"
+              >
+                <p
+                  class="text-2xl md:text-3xl font-bold gradient-text counter"
+                  data-target="15"
+                >
+                  0
+                </p>
+                <p
+                  class="text-xs dark:text-slate-400 text-slate-500 mt-1 font-medium"
+                >
+                  Technologies
+                </p>
+              </div>
+              <div
+                class="text-center p-4 rounded-2xl dark:bg-dark-700/50 bg-gray-50 border dark:border-slate-700/50 border-gray-100"
+              >
+                <p
+                  class="text-2xl md:text-3xl font-bold gradient-text counter"
+                  data-target="5"
+                >
+                  0
+                </p>
+                <p
+                  class="text-xs dark:text-slate-400 text-slate-500 mt-1 font-medium"
+                >
+                  Certifications
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Bio -->
+          <div class="reveal reveal-delay-2">
+            <h3
+              class="text-2xl md:text-3xl font-bold dark:text-white text-gray-900 mb-6"
+            >
+              A passionate
+              <span class="gradient-text">Full Stack Developer</span> & AI
+              Explorer
+            </h3>
+            <div
+              class="space-y-4 dark:text-slate-400 text-slate-500 leading-relaxed"
+            >
+              <p>
+                I'm
+                <span class="dark:text-white text-gray-800 font-semibold"
+                  >Anshu Kumar</span
+                >,Full Stack Web Developer focused on building modern,
+                responsive, and scalable web applications. Experienced in
+                creating user-friendly interfaces, developing robust backend
+                systems, and delivering high-performance web solutions using
+                modern technologies.
+              </p>
+              <p>
+                Currently working as a
+                <span class="dark:text-primary-400 text-primary-600 font-medium"
+                  >Full Stack Web Developer</span
+                >
+                at a Tech Startup, where I build responsive, high-performance
+                interfaces using React.js and modern JavaScript. I've
+                contributed to reducing page load times by ~25% through
+                optimizations like lazy loading and code splitting.
+              </p>
+              <p>
+                My journey spans from mastering frontend fundamentals with
+                <span class="dark:text-accent-cyan text-cyan-600 font-medium"
+                  >Namaste React</span
+                >
+                and
+                <span class="dark:text-accent-amber text-amber-600 font-medium"
+                  >The Odin Project</span
+                >
+                to building AI-powered applications using LangChain, RAG, and
+                OpenAI APIs. I'm constantly learning and pushing boundaries.
+              </p>
+            </div>
+
+            <!-- Quick Info -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl bg-primary-600/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <i data-lucide="map-pin" class="w-4 h-4 text-primary-600"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs dark:text-slate-500 text-slate-400 font-medium"
+                  >
+                    Location
+                  </p>
+                  <p
+                    class="text-sm dark:text-white text-gray-800 font-semibold"
+                  >
+                    India
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl bg-accent-cyan/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <i
+                    data-lucide="graduation-cap"
+                    class="w-4 h-4 text-accent-cyan"
+                  ></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs dark:text-slate-500 text-slate-400 font-medium"
+                  >
+                    Education
+                  </p>
+                  <p
+                    class="text-sm dark:text-white text-gray-800 font-semibold"
+                  >
+                    B.Tech CSE
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl bg-accent-amber/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <i data-lucide="mail" class="w-4 h-4 text-accent-amber"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs dark:text-slate-500 text-slate-400 font-medium"
+                  >
+                    Email
+                  </p>
+                  <p
+                    class="text-sm dark:text-white text-gray-800 font-semibold"
+                  >
+                    anshukumar71012@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <i data-lucide="languages" class="w-4 h-4 text-green-500"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs dark:text-slate-500 text-slate-400 font-medium"
+                  >
+                    Languages
+                  </p>
+                  <p
+                    class="text-sm dark:text-white text-gray-800 font-semibold"
+                  >
+                    Hindi, English
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 mt-8 btn-shimmer bg-primary-600 hover:bg-primary-700 text-white font-bold px-6 py-3 rounded-xl transition-all hover:scale-105 shadow-lg shadow-primary-600/25"
+            >
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              Let's Talk
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section id="skills" class="relative py-24 lg:py-32 px-6">
+      <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16 reveal">
+          <span
+            class="inline-block text-xs font-bold tracking-widest uppercase dark:text-primary-400 text-primary-600 mb-4"
+            >What I Work With</span
+          >
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 tracking-tight"
+          >
+            Tech <span class="gradient-text">Stack</span>
+          </h2>
+          <p class="mt-4 dark:text-slate-400 text-slate-500 max-w-xl mx-auto">
+            Technologies and tools I use to bring ideas to life
+          </p>
+        </div>
+
+        <!-- Skills Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Frontend -->
+          <div
+            class="reveal reveal-delay-1 group dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-primary-600/30 hover:border-primary-200 transition-all duration-500 hover:-translate-y-2"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="layout" class="w-6 h-6 text-blue-500"></i>
+            </div>
+            <h3 class="text-lg font-bold dark:text-white text-gray-900 mb-1">
+              Frontend
+            </h3>
+            <p class="text-xs dark:text-slate-500 text-slate-400 mb-4">
+              UI/UX & Interfaces
+            </p>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >React.js</span
+                  ><span class="dark:text-slate-500 text-slate-400">90%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
+                    style="--progress: 90%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >Next.js</span
+                  ><span class="dark:text-slate-500 text-slate-400">80%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
+                    style="--progress: 80%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >Tailwind CSS</span
+                  ><span class="dark:text-slate-500 text-slate-400">92%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
+                    style="--progress: 92%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >TypeScript</span
+                  ><span class="dark:text-slate-500 text-slate-400">70%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
+                    style="--progress: 70%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >HTML5</span
+              >
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >CSS3</span
+              >
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >Redux</span
+              >
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >shadcn/ui</span
+              >
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >MUI</span
+              >
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div
+            class="reveal reveal-delay-2 group dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-green-600/30 hover:border-green-200 transition-all duration-500 hover:-translate-y-2"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="server" class="w-6 h-6 text-green-500"></i>
+            </div>
+            <h3 class="text-lg font-bold dark:text-white text-gray-900 mb-1">
+              Backend
+            </h3>
+            <p class="text-xs dark:text-slate-500 text-slate-400 mb-4">
+              APIs & Server
+            </p>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >Node.js</span
+                  ><span class="dark:text-slate-500 text-slate-400">85%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full"
+                    style="--progress: 85%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >Express.js</span
+                  ><span class="dark:text-slate-500 text-slate-400">82%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full"
+                    style="--progress: 82%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >REST APIs</span
+                  ><span class="dark:text-slate-500 text-slate-400">88%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full"
+                    style="--progress: 88%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >SQL</span
+                  ><span class="dark:text-slate-500 text-slate-400">75%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full"
+                    style="--progress: 75%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >MongoDB</span
+              >
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >PostgreSQL</span
+              >
+            </div>
+          </div>
+
+          <!-- AI/LLM -->
+          <div
+            class="reveal reveal-delay-3 group dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-purple-600/30 hover:border-purple-200 transition-all duration-500 hover:-translate-y-2"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="brain" class="w-6 h-6 text-purple-500"></i>
+            </div>
+            <h3 class="text-lg font-bold dark:text-white text-gray-900 mb-1">
+              AI / LLM
+            </h3>
+            <p class="text-xs dark:text-slate-500 text-slate-400 mb-4">
+              Intelligence Layer
+            </p>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >OpenAI API</span
+                  ><span class="dark:text-slate-500 text-slate-400">85%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full"
+                    style="--progress: 85%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >LangChain</span
+                  ><span class="dark:text-slate-500 text-slate-400">78%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full"
+                    style="--progress: 78%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >RAG</span
+                  ><span class="dark:text-slate-500 text-slate-400">80%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full"
+                    style="--progress: 80%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="dark:text-slate-300 text-slate-600 font-medium"
+                    >FAISS</span
+                  ><span class="dark:text-slate-500 text-slate-400">72%</span>
+                </div>
+                <div
+                  class="h-1.5 dark:bg-dark-700 bg-gray-100 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="skill-progress h-full bg-gradient-to-r from-purple-500 to-pink-400 rounded-full"
+                    style="--progress: 72%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >Vector DB</span
+              >
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >Prompt Eng.</span
+              >
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div
+            class="reveal reveal-delay-4 group dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-amber-600/30 hover:border-amber-200 transition-all duration-500 hover:-translate-y-2"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+            >
+              <i data-lucide="wrench" class="w-6 h-6 text-amber-500"></i>
+            </div>
+            <h3 class="text-lg font-bold dark:text-white text-gray-900 mb-1">
+              Tools
+            </h3>
+            <p class="text-xs dark:text-slate-500 text-slate-400 mb-4">
+              Dev & Workflow
+            </p>
+            <div class="grid grid-cols-3 gap-3 mt-2">
+              <div
+                class="flex flex-col items-center gap-1.5 p-2 rounded-xl dark:bg-dark-700/50 bg-gray-50"
+              >
+                <i
+                  data-lucide="git-branch"
+                  class="w-5 h-5 dark:text-slate-300 text-slate-600"
+                ></i>
+                <span
+                  class="text-[10px] dark:text-slate-400 text-slate-500 font-medium"
+                  >Git</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center gap-1.5 p-2 rounded-xl dark:bg-dark-700/50 bg-gray-50"
+              >
+                <i
+                  data-lucide="github"
+                  class="w-5 h-5 dark:text-slate-300 text-slate-600"
+                ></i>
+                <span
+                  class="text-[10px] dark:text-slate-400 text-slate-500 font-medium"
+                  >GitHub</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center gap-1.5 p-2 rounded-xl dark:bg-dark-700/50 bg-gray-50"
+              >
+                <i
+                  data-lucide="code-2"
+                  class="w-5 h-5 dark:text-slate-300 text-slate-600"
+                ></i>
+                <span
+                  class="text-[10px] dark:text-slate-400 text-slate-500 font-medium"
+                  >VS Code</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center gap-1.5 p-2 rounded-xl dark:bg-dark-700/50 bg-gray-50"
+              >
+                <i
+                  data-lucide="box"
+                  class="w-5 h-5 dark:text-slate-300 text-slate-600"
+                ></i>
+                <span
+                  class="text-[10px] dark:text-slate-400 text-slate-500 font-medium"
+                  >Postman</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center gap-1.5 p-2 rounded-xl dark:bg-dark-700/50 bg-gray-50"
+              >
+                <i
+                  data-lucide="database"
+                  class="w-5 h-5 dark:text-slate-300 text-slate-600"
+                ></i>
+                <span
+                  class="text-[10px] dark:text-slate-400 text-slate-500 font-medium"
+                  >MongoDB</span
+                >
+              </div>
+              <div
+                class="flex flex-col items-center gap-1.5 p-2 rounded-xl dark:bg-dark-700/50 bg-gray-50"
+              >
+                <i
+                  data-lucide="cloud"
+                  class="w-5 h-5 dark:text-slate-300 text-slate-600"
+                ></i>
+                <span
+                  class="text-[10px] dark:text-slate-400 text-slate-500 font-medium"
+                  >Vercel</span
+                >
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >Problem Solving</span
+              >
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500"
+                >Self-Learning</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS SECTION ==================== -->
+    <section id="projects" class="relative py-24 lg:py-32 px-6">
+      <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-12 reveal">
+          <span
+            class="inline-block text-xs font-bold tracking-widest uppercase dark:text-primary-400 text-primary-600 mb-4"
+            >My Work</span
+          >
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 tracking-tight"
+          >
+            Featured <span class="gradient-text">Projects</span>
+          </h2>
+          <p class="mt-4 dark:text-slate-400 text-slate-500 max-w-xl mx-auto">
+            A selection of projects that showcase my skills and passion
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div
+          class="flex flex-wrap items-center justify-center gap-3 mb-12 reveal"
+        >
+          <button
+            onclick="filterProjects('all')"
+            class="filter-btn active px-5 py-2 rounded-xl text-sm font-semibold dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 border dark:border-slate-700 border-gray-200 transition-all"
+            data-filter="all"
+          >
+            All Projects
+          </button>
+          <button
+            onclick="filterProjects('fullstack')"
+            class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 border dark:border-slate-700 border-gray-200 transition-all"
+            data-filter="fullstack"
+          >
+            Full Stack
+          </button>
+          <button
+            onclick="filterProjects('ai')"
+            class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 border dark:border-slate-700 border-gray-200 transition-all"
+            data-filter="ai"
+          >
+            AI/ML
+          </button>
+          <button
+            onclick="filterProjects('frontend')"
+            class="filter-btn px-5 py-2 rounded-xl text-sm font-semibold dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 border dark:border-slate-700 border-gray-200 transition-all"
+            data-filter="frontend"
+          >
+            Frontend
+          </button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="projects-grid" class="grid md:grid-cols-2 gap-8">
+          <!-- Project 1: AI Chatbot -->
+          <div
+            class="project-card reveal reveal-delay-1 dark:bg-dark-800/50 bg-white rounded-2xl overflow-hidden border dark:border-slate-700/50 border-gray-100 group"
+            data-category="ai"
+          >
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src="./img/AI chat bot.png"
+                alt="AI Chatbot"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent"
+              ></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span
+                  class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold backdrop-blur-sm border border-purple-500/20"
+                  >AI/ML</span
+                >
+                <span
+                  class="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs font-bold backdrop-blur-sm border border-green-500/20"
+                  >Featured</span
+                >
+              </div>
+              <div
+                class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <!-- <a
+                  href="#"
+                  class="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
+                  ><i data-lucide="github" class="w-4 h-4"></i
+                ></a> -->
+                <a
+                  href="https://urban-wear-204.netlify.app/"
+                  target="_blank"
+                  class="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
+                  ><i data-lucide="external-link" class="w-4 h-4"></i
+                ></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3
+                class="text-xl font-bold dark:text-white text-gray-900 mb-2 group-hover:text-primary-600 transition-colors"
+              >
+                AI Chatbot (RAG-Based)
+              </h3>
+              <p
+                class="dark:text-slate-400 text-slate-500 text-sm leading-relaxed mb-4"
+              >
+                Built an AI-powered context-aware chatbot using
+                Retrieval-Augmented Generation (RAG) to retrieve information
+                from custom knowledge sources and deliver accurate, grounded
+                responses with low latency.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >LangChain</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >RAG</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >FAISS</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >OpenAI API</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >Node.js</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >React.js</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Task Management -->
+          <div
+            class="project-card reveal reveal-delay-2 dark:bg-dark-800/50 bg-white rounded-2xl overflow-hidden border dark:border-slate-700/50 border-gray-100 group"
+            data-category="fullstack"
+          >
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src="./img/Task Management App.png"
+                alt="Task Management App"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent"
+              ></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span
+                  class="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-xs font-bold backdrop-blur-sm border border-green-500/20"
+                  >Full Stack</span
+                >
+              </div>
+              <div
+                class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="#"
+                  class="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
+                  ><i data-lucide="external-link" class="w-4 h-4"></i
+                ></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3
+                class="text-xl font-bold dark:text-white text-gray-900 mb-2 group-hover:text-primary-600 transition-colors"
+              >
+                Task Management App
+              </h3>
+              <p
+                class="dark:text-slate-400 text-slate-500 text-sm leading-relaxed mb-4"
+              >
+                Full-stack task management application with user authentication,
+                CRUD operations, role-based access, real-time updates, and a
+                clean dashboard UI for tracking tasks and deadlines.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >React.js</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >Tailwind CSS</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >Redux Toolkit</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >Node.js</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >MongoDB</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: E-Commerce Clone -->
+          <div
+            class="project-card reveal reveal-delay-3 dark:bg-dark-800/50 bg-white rounded-2xl overflow-hidden border dark:border-slate-700/50 border-gray-100 group"
+            data-category="frontend"
+          >
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src="./img/E-Commerce Frontend Clone.png"
+                alt="E-Commerce Clone"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent"
+              ></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span
+                  class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold backdrop-blur-sm border border-blue-500/20"
+                  >Frontend</span
+                >
+              </div>
+              <div
+                class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="./index copy.html"
+                  target="_blank"
+                  class="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
+                  ><i data-lucide="github" class="w-4 h-4"></i
+                ></a>
+                <a
+                  href="https://urban-wear-204.netlify.app/"
+                  target="_blank"
+                  class="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
+                  ><i data-lucide="external-link" class="w-4 h-4"></i
+                ></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3
+                class="text-xl font-bold dark:text-white text-gray-900 mb-2 group-hover:text-primary-600 transition-colors"
+              >
+                E-Commerce Frontend Clone
+              </h3>
+              <p
+                class="dark:text-slate-400 text-slate-500 text-sm leading-relaxed mb-4"
+              >
+                Feature-rich e-commerce UI clone with product listings, cart
+                functionality, search and filter, and responsive layout,
+                integrating RESTful APIs for dynamic data rendering.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >React.js</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >Tailwind CSS</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >Redux Toolkit</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >REST APIs</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Portfolio Website -->
+          <div
+            class="project-card reveal reveal-delay-4 dark:bg-dark-800/50 bg-white rounded-2xl overflow-hidden border dark:border-slate-700/50 border-gray-100 group"
+            data-category="frontend"
+          >
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src="./img/Portfolio Website (2).png"
+                alt="Portfolio Website"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent"
+              ></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span
+                  class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold backdrop-blur-sm border border-blue-500/20"
+                  >Frontend</span
+                >
+                <span
+                  class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold backdrop-blur-sm border border-amber-500/20"
+                  >Current</span
+                >
+              </div>
+              <div
+                class="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <a
+                  href="#"
+                  class="p-2.5 rounded-xl bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all"
+                  ><i data-lucide="external-link" class="w-4 h-4"></i
+                ></a>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3
+                class="text-xl font-bold dark:text-white text-gray-900 mb-2 group-hover:text-primary-600 transition-colors"
+              >
+                Portfolio Website
+              </h3>
+              <p
+                class="dark:text-slate-400 text-slate-500 text-sm leading-relaxed mb-4"
+              >
+                Fully responsive personal portfolio website showcasing skills,
+                projects, and contact information, with smooth animations and
+                mobile-first design achieving fast load performance.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >HTML5</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >CSS3</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >JavaScript</span
+                >
+                <span
+                  class="text-xs px-2.5 py-1 rounded-lg dark:bg-dark-700 bg-gray-100 dark:text-slate-300 text-slate-600 font-medium"
+                  >React.js</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EXPERIENCE SECTION ==================== -->
+    <section id="experience" class="relative py-24 lg:py-32 px-6">
+      <div class="max-w-4xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16 reveal">
+          <span
+            class="inline-block text-xs font-bold tracking-widest uppercase dark:text-primary-400 text-primary-600 mb-4"
+            >My Journey</span
+          >
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 tracking-tight"
+          >
+            Experience & <span class="gradient-text">Education</span>
+          </h2>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative pl-12">
+          <div class="timeline-line"></div>
+
+          <!-- Experience 1 -->
+          <div class="relative mb-12 reveal reveal-delay-1">
+            <div
+              class="absolute -left-12 top-0 w-10 h-10 rounded-full bg-primary-600 flex items-center justify-center z-10 shadow-lg shadow-primary-600/30"
+            >
+              <i data-lucide="briefcase" class="w-4 h-4 text-white"></i>
+            </div>
+            <div
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-primary-600/30 hover:border-primary-200 transition-all duration-300"
+            >
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span
+                  class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-bold"
+                  >Current</span
+                >
+                <span
+                  class="text-xs dark:text-slate-500 text-slate-400 font-mono"
+                  >Jan 2026 – Present</span
+                >
+              </div>
+              <h3 class="text-xl font-bold dark:text-white text-gray-900 mb-1">
+                Full Stack Web Developer
+              </h3>
+              <p
+                class="text-sm dark:text-primary-400 text-primary-600 font-medium mb-3"
+              >
+                Tech Startup · Remote
+              </p>
+              <ul class="space-y-2">
+                <li
+                  class="flex items-start gap-2 text-sm dark:text-slate-400 text-slate-500"
+                >
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0"
+                  ></i>
+                  Built responsive web interfaces using HTML5, CSS3, JavaScript
+                  (ES6+), and React.js
+                </li>
+                <li
+                  class="flex items-start gap-2 text-sm dark:text-slate-400 text-slate-500"
+                >
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0"
+                  ></i>
+                  Built responsive and scalable web applications using React.js,
+                  Node.js, Express.js, and MongoDB.
+                </li>
+                <li
+                  class="flex items-start gap-2 text-sm dark:text-slate-400 text-slate-500"
+                >
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0"
+                  ></i>
+                  Reduced page load times by ~25% through lazy loading and code
+                  splitting
+                </li>
+                <li
+                  class="flex items-start gap-2 text-sm dark:text-slate-400 text-slate-500"
+                >
+                  <i
+                    data-lucide="check-circle-2"
+                    class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0"
+                  ></i>
+                  Collaborated using Agile workflows and Git version control
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="relative mb-12 reveal reveal-delay-2">
+            <div
+              class="absolute -left-12 top-0 w-10 h-10 rounded-full bg-accent-cyan flex items-center justify-center z-10 shadow-lg shadow-cyan-500/30"
+            >
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-white"></i>
+            </div>
+            <div
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-cyan-600/30 hover:border-cyan-200 transition-all duration-300"
+            >
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span
+                  class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold"
+                  >Education</span
+                >
+                <span
+                  class="text-xs dark:text-slate-500 text-slate-400 font-mono"
+                  >Aug 2025 – June 2029</span
+                >
+              </div>
+              <h3 class="text-xl font-bold dark:text-white text-gray-900 mb-1">
+                B.Tech in Computer Science & Engineering
+              </h3>
+              <p
+                class="text-sm dark:text-accent-cyan text-cyan-600 font-medium"
+              >
+                University · India
+              </p>
+            </div>
+          </div>
+
+          <!-- Certification 1 -->
+          <div class="relative mb-12 reveal reveal-delay-3">
+            <div
+              class="absolute -left-12 top-0 w-10 h-10 rounded-full bg-accent-amber flex items-center justify-center z-10 shadow-lg shadow-amber-500/30"
+            >
+              <i data-lucide="award" class="w-4 h-4 text-white"></i>
+            </div>
+            <div
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-amber-600/30 hover:border-amber-200 transition-all duration-300"
+            >
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span
+                  class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold"
+                  >Certification</span
+                >
+              </div>
+              <h3 class="text-xl font-bold dark:text-white text-gray-900 mb-1">
+                Namaste React
+              </h3>
+              <p class="text-sm dark:text-slate-400 text-slate-500">
+                Developed React.js-based frontend projects applying state
+                management, component architecture, and hooks across 10+
+                assignments and 2 major applications.
+              </p>
+            </div>
+          </div>
+
+          <!-- Certification 2 -->
+          <div class="relative reveal reveal-delay-4">
+            <div
+              class="absolute -left-12 top-0 w-10 h-10 rounded-full bg-accent-amber flex items-center justify-center z-10 shadow-lg shadow-amber-500/30"
+            >
+              <i data-lucide="award" class="w-4 h-4 text-white"></i>
+            </div>
+            <div
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-amber-600/30 hover:border-amber-200 transition-all duration-300"
+            >
+              <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span
+                  class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold"
+                  >Certification</span
+                >
+              </div>
+              <h3 class="text-xl font-bold dark:text-white text-gray-900 mb-1">
+                The Odin Project – Full Stack JavaScript
+              </h3>
+              <p class="text-sm dark:text-slate-400 text-slate-500">
+                Completed hands-on curriculum covering HTML, CSS, JavaScript,
+                React.js, Node.js, Express, and MongoDB with real-world
+                projects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS SECTION ==================== -->
+    <section
+      id="testimonials"
+      class="relative py-24 lg:py-32 px-6 overflow-hidden"
+    >
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <span
+            class="inline-block text-xs font-bold tracking-widest uppercase dark:text-primary-400 text-primary-600 mb-4"
+            >What People Say</span
+          >
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 tracking-tight"
+          >
+            Client <span class="gradient-text">Reviews</span>
+          </h2>
+        </div>
+
+        <div class="relative overflow-hidden reveal">
+          <div id="testimonial-track" class="testimonial-track flex">
+            <!-- Testimonial 1 -->
+            <div class="w-full flex-shrink-0 px-4">
+              <div
+                class="dark:bg-dark-800/50 bg-white rounded-2xl p-8 md:p-10 border dark:border-slate-700/50 border-gray-100 text-center max-w-2xl mx-auto"
+              >
+                <div class="flex justify-center gap-1 mb-6">
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                </div>
+                <p
+                  class="text-lg dark:text-slate-300 text-slate-600 leading-relaxed mb-6 italic"
+                >
+                  "Anshu delivered an exceptional frontend for our startup. His
+                  React skills and attention to detail were impressive. The
+                  performance improvements he implemented made a real
+                  difference."
+                </p>
+                <div class="flex items-center justify-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-full bg-primary-600/20 flex items-center justify-center"
+                  >
+                    <span class="text-primary-400 font-bold">RK</span>
+                  </div>
+                  <div class="text-left">
+                    <p class="font-bold dark:text-white text-gray-900">
+                      Rahul K.
+                    </p>
+                    <p class="text-sm dark:text-slate-400 text-slate-500">
+                      Tech Lead, Startup
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="w-full flex-shrink-0 px-4">
+              <div
+                class="dark:bg-dark-800/50 bg-white rounded-2xl p-8 md:p-10 border dark:border-slate-700/50 border-gray-100 text-center max-w-2xl mx-auto"
+              >
+                <div class="flex justify-center gap-1 mb-6">
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                </div>
+                <p
+                  class="text-lg dark:text-slate-300 text-slate-600 leading-relaxed mb-6 italic"
+                >
+                  "The AI chatbot Anshu built for us was game-changing. It
+                  understood our documentation perfectly and reduced support
+                  queries by 40%. Highly recommend his AI skills."
+                </p>
+                <div class="flex items-center justify-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-full bg-accent-cyan/20 flex items-center justify-center"
+                  >
+                    <span class="text-accent-cyan font-bold">PS</span>
+                  </div>
+                  <div class="text-left">
+                    <p class="font-bold dark:text-white text-gray-900">
+                      Priya S.
+                    </p>
+                    <p class="text-sm dark:text-slate-400 text-slate-500">
+                      Product Manager
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="w-full flex-shrink-0 px-4">
+              <div
+                class="dark:bg-dark-800/50 bg-white rounded-2xl p-8 md:p-10 border dark:border-slate-700/50 border-gray-100 text-center max-w-2xl mx-auto"
+              >
+                <div class="flex justify-center gap-1 mb-6">
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-amber-400 fill-amber-400"
+                  ></i>
+                  <i
+                    data-lucide="star"
+                    class="w-5 h-5 text-slate-300 fill-slate-300"
+                  ></i>
+                </div>
+                <p
+                  class="text-lg dark:text-slate-300 text-slate-600 leading-relaxed mb-6 italic"
+                >
+                  "Great collaborator! Anshu's task management app was clean,
+                  fast, and exactly what our team needed. His full-stack
+                  knowledge is solid for a student at his level."
+                </p>
+                <div class="flex items-center justify-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-full bg-accent-amber/20 flex items-center justify-center"
+                  >
+                    <span class="text-accent-amber font-bold">AM</span>
+                  </div>
+                  <div class="text-left">
+                    <p class="font-bold dark:text-white text-gray-900">
+                      Amit M.
+                    </p>
+                    <p class="text-sm dark:text-slate-400 text-slate-500">
+                      Freelance Client
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="flex items-center justify-center gap-4 mt-8">
+            <button
+              onclick="moveTestimonial(-1)"
+              class="p-3 rounded-xl dark:bg-dark-700 bg-gray-100 dark:hover:bg-dark-600 hover:bg-gray-200 transition-all"
+            >
+              <i
+                data-lucide="chevron-left"
+                class="w-5 h-5 dark:text-white text-gray-700"
+              ></i>
+            </button>
+            <div id="testimonial-dots" class="flex gap-2">
+              <button
+                onclick="goToTestimonial(0)"
+                class="w-2.5 h-2.5 rounded-full bg-primary-600 transition-all"
+              ></button>
+              <button
+                onclick="goToTestimonial(1)"
+                class="w-2.5 h-2.5 rounded-full dark:bg-dark-600 bg-gray-300 transition-all"
+              ></button>
+              <button
+                onclick="goToTestimonial(2)"
+                class="w-2.5 h-2.5 rounded-full dark:bg-dark-600 bg-gray-300 transition-all"
+              ></button>
+            </div>
+            <button
+              onclick="moveTestimonial(1)"
+              class="p-3 rounded-xl dark:bg-dark-700 bg-gray-100 dark:hover:bg-dark-600 hover:bg-gray-200 transition-all"
+            >
+              <i
+                data-lucide="chevron-right"
+                class="w-5 h-5 dark:text-white text-gray-700"
+              ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section id="contact" class="relative py-24 lg:py-32 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16 reveal">
+          <span
+            class="inline-block text-xs font-bold tracking-widest uppercase dark:text-primary-400 text-primary-600 mb-4"
+            >Get In Touch</span
+          >
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 tracking-tight"
+          >
+            Let's Work <span class="gradient-text">Together</span>
+          </h2>
+          <p class="mt-4 dark:text-slate-400 text-slate-500 max-w-xl mx-auto">
+            Have a project in mind? Let's discuss how I can help bring your
+            ideas to life.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-10">
+          <!-- Contact Info -->
+          <div class="lg:col-span-2 space-y-6 reveal reveal-delay-1">
+            <div
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-primary-600/30 hover:border-primary-200 transition-all group"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-primary-600/10 flex items-center justify-center group-hover:scale-110 transition-transform"
+                >
+                  <i data-lucide="mail" class="w-5 h-5 text-primary-600"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs dark:text-slate-500 text-slate-400 font-medium"
+                  >
+                    Email
+                  </p>
+                  <p
+                    class="text-sm dark:text-white text-gray-800 font-semibold"
+                  >
+                    anshukumar71012@gmail.com
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-green-600/30 hover:border-green-200 transition-all group"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center group-hover:scale-110 transition-transform"
+                >
+                  <i data-lucide="phone" class="w-5 h-5 text-green-500"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs dark:text-slate-500 text-slate-400 font-medium"
+                  >
+                    Phone
+                  </p>
+                  <p
+                    class="text-sm dark:text-white text-gray-800 font-semibold"
+                  >
+                    +91 9241778197
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 border dark:border-slate-700/50 border-gray-100 hover:dark:border-cyan-600/30 hover:border-cyan-200 transition-all group"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center group-hover:scale-110 transition-transform"
+                >
+                  <i
+                    data-lucide="message-circle"
+                    class="w-5 h-5 text-cyan-500"
+                  ></i>
+                </div>
+                <div>
+                  <p
+                    class="text-xs dark:text-slate-500 text-slate-400 font-medium"
+                  >
+                    WhatsApp
+                  </p>
+                  <a
+                    href="https://wa.me/919241778197"
+                    target="_blank"
+                    class="text-sm text-cyan-500 hover:text-cyan-400 font-semibold transition-colors"
+                    >Chat on WhatsApp →</a
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex gap-3 pt-2">
+              <a
+                href="https://github.com/anshukumar-204"
+                target="_blank"
+                class="flex-1 p-3 rounded-xl dark:bg-dark-700/50 bg-gray-50 dark:hover:bg-primary-600/20 hover:bg-primary-50 border dark:border-slate-700/50 border-gray-100 flex items-center justify-center dark:text-slate-400 text-slate-500 hover:text-primary-600 transition-all"
+              >
+                <i data-lucide="github" class="w-5 h-5"></i>
+                <img
+                  src="./img/github log.svg"
+                  alt="GitHub"
+                  class="w-5 h-5 object-contain"
+                />
+              </a>
+              <a
+                href="https://linkedin.com/"
+                target="_blank"
+                class="flex-1 p-3 rounded-xl dark:bg-dark-700/50 bg-gray-50 dark:hover:bg-primary-600/20 hover:bg-primary-50 border dark:border-slate-700/50 border-gray-100 flex items-center justify-center dark:text-slate-400 text-slate-500 hover:text-primary-600 transition-all"
+              >
+                <!-- <i data-lucide="linkedin" class="w-5 h-5"></i> -->
+                <img
+                  src="./img/linkedin-log.svg"
+                  alt="LinkedIn"
+                  class="w-5 h-5 object-contain"
+                />
+              </a>
+              <a
+                href="mailto:anshukumar71012@gmail.com"
+                class="flex-1 p-3 rounded-xl dark:bg-dark-700/50 bg-gray-50 dark:hover:bg-primary-600/20 hover:bg-primary-50 border dark:border-slate-700/50 border-gray-100 flex items-center justify-center dark:text-slate-400 text-slate-500 hover:text-primary-600 transition-all"
+              >
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="lg:col-span-3 reveal reveal-delay-2">
+            <form
+              id="contact-form"
+              onsubmit="handleSubmit(event)"
+              class="dark:bg-dark-800/50 bg-white rounded-2xl p-6 md:p-8 border dark:border-slate-700/50 border-gray-100"
+            >
+              <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                <div>
+                  <label
+                    class="block text-xs font-bold dark:text-slate-300 text-slate-600 mb-2 uppercase tracking-wider"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    required
+                    placeholder="Enter name"
+                    class="w-full px-4 py-3 rounded-xl dark:bg-dark-700 bg-gray-50 border dark:border-slate-600 border-gray-200 dark:text-white text-gray-800 placeholder:dark:text-slate-500 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600 transition-all text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    class="block text-xs font-bold dark:text-slate-300 text-slate-600 mb-2 uppercase tracking-wider"
+                    >Your Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    required
+                    placeholder="Enter email"
+                    class="w-full px-4 py-3 rounded-xl dark:bg-dark-700 bg-gray-50 border dark:border-slate-600 border-gray-200 dark:text-white text-gray-800 placeholder:dark:text-slate-500 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600 transition-all text-sm"
+                  />
+                </div>
+              </div>
+              <div class="mb-5">
+                <label
+                  class="block text-xs font-bold dark:text-slate-300 text-slate-600 mb-2 uppercase tracking-wider"
+                  >Subject</label
+                >
+                <input
+                  type="text"
+                  id="subject"
+                  required
+                  placeholder="Enter subject"
+                  class="w-full px-4 py-3 rounded-xl dark:bg-dark-700 bg-gray-50 border dark:border-slate-600 border-gray-200 dark:text-white text-gray-800 placeholder:dark:text-slate-500 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600 transition-all text-sm"
+                />
+              </div>
+              <div class="mb-6">
+                <label
+                  class="block text-xs font-bold dark:text-slate-300 text-slate-600 mb-2 uppercase tracking-wider"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows="5"
+                  placeholder="Tell me about your project..."
+                  class="w-full px-4 py-3 rounded-xl dark:bg-dark-700 bg-gray-50 border dark:border-slate-600 border-gray-200 dark:text-white text-gray-800 placeholder:dark:text-slate-500 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600 transition-all text-sm resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full btn-shimmer bg-primary-600 hover:bg-primary-700 text-white font-bold text-base py-4 rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-primary-600/25 flex items-center justify-center gap-2"
+                onclick="sendEmail()"
+              >
+                <i data-lucide="send" class="w-5 h-5"></i>
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer
+      class="relative py-12 px-6 border-t dark:border-slate-800 border-gray-200"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div class="flex items-center gap-3">
+            <img
+              src="./img/log.jpg"
+              alt="Logo"
+              class="h-8 w-8 rounded-lg object-contain"
+            />
+            <span class="text-sm dark:text-slate-400 text-slate-500"
+              >© 2025 Anshu Kumar. Built with ❤️ and lots of ☕</span
+            >
+          </div>
+          <div class="flex items-center gap-6">
+            <a
+              href="#hero"
+              class="text-sm dark:text-slate-400 text-slate-500 hover:dark:text-white hover:text-gray-900 transition-colors"
+              >Home</a
+            >
+            <a
+              href="#about"
+              class="text-sm dark:text-slate-400 text-slate-500 hover:dark:text-white hover:text-gray-900 transition-colors"
+              >About</a
+            >
+            <a
+              href="#projects"
+              class="text-sm dark:text-slate-400 text-slate-500 hover:dark:text-white hover:text-gray-900 transition-colors"
+              >Projects</a
+            >
+            <a
+              href="#contact"
+              class="text-sm dark:text-slate-400 text-slate-500 hover:dark:text-white hover:text-gray-900 transition-colors"
+              >Contact</a
+            >
+          </div>
+          <div class="flex items-center gap-3">
+            <a
+              href="https://github.com/"
+              target="_blank"
+              class="p-2 rounded-lg dark:hover:bg-dark-700 hover:bg-gray-100 dark:text-slate-500 text-slate-400 transition-all"
+              ><i data-lucide="github" class="w-4 h-4"></i
+            ></a>
+            <a
+              href="https://linkedin.com/"
+              target="_blank"
+              class="p-2 rounded-lg dark:hover:bg-dark-700 hover:bg-gray-100 dark:text-slate-500 text-slate-400 transition-all"
+              ><i data-lucide="linkedin" class="w-4 h-4"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ==================== AI CHAT WIDGET ==================== -->
+    <div class="fixed bottom-6 right-6 z-50">
+      <!-- Chat Panel -->
+      <div
+        id="chat-panel"
+        class="chat-panel absolute bottom-16 right-0 w-[360px] max-w-[calc(100vw-48px)] dark:bg-dark-800 bg-white rounded-2xl border dark:border-slate-700 border-gray-200 shadow-2xl overflow-hidden"
+      >
+        <!-- Chat Header -->
+        <div class="bg-primary-600 p-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"
+            >
+              <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+            </div>
+            <div>
+              <p class="text-white text-sm font-bold">AI Assistant</p>
+              <p class="text-white/70 text-xs">Ask me about Anshu</p>
+            </div>
+          </div>
+          <button
+            onclick="toggleChat()"
+            class="p-1.5 rounded-lg hover:bg-white/10 transition-colors"
+          >
+            <i data-lucide="x" class="w-4 h-4 text-white"></i>
+          </button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div
+          id="chat-messages"
+          class="h-72 overflow-y-auto p-4 space-y-3 dark:bg-dark-900/50 bg-gray-50"
+        >
+          <div class="flex gap-2">
+            <div
+              class="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+            >
+              <i data-lucide="bot" class="w-3 h-3 text-white"></i>
+            </div>
+            <div
+              class="dark:bg-dark-700 bg-white rounded-xl rounded-tl-sm p-3 max-w-[80%]"
+            >
+              <p class="text-sm dark:text-slate-300 text-slate-600">
+                Hi! 👋 I'm Anshu's AI assistant. Ask me about his skills,
+                projects, or how to hire him!
+              </p>
+            </div>
+          </div>
+          <!-- Quick Actions -->
+          <div class="flex flex-wrap gap-2 pl-8">
+            <button
+              onclick="sendQuickMessage('What tech stack do you use?')"
+              class="text-xs px-3 py-1.5 rounded-full dark:bg-dark-700 bg-white dark:text-slate-300 text-slate-600 border dark:border-slate-600 border-gray-200 hover:border-primary-600 transition-colors"
+            >
+              Tech stack?
+            </button>
+            <button
+              onclick="sendQuickMessage('Show me AI projects')"
+              class="text-xs px-3 py-1.5 rounded-full dark:bg-dark-700 bg-white dark:text-slate-300 text-slate-600 border dark:border-slate-600 border-gray-200 hover:border-primary-600 transition-colors"
+            >
+              AI projects
+            </button>
+            <button
+              onclick="sendQuickMessage('How can I hire you?')"
+              class="text-xs px-3 py-1.5 rounded-full dark:bg-dark-700 bg-white dark:text-slate-300 text-slate-600 border dark:border-slate-600 border-gray-200 hover:border-primary-600 transition-colors"
+            >
+              Hire Anshu
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="p-3 border-t dark:border-slate-700 border-gray-200">
+          <form onsubmit="sendChatMessage(event)" class="flex gap-2">
+            <input
+              id="chat-input"
+              type="text"
+              placeholder="Type a message..."
+              class="flex-1 px-4 py-2.5 rounded-xl dark:bg-dark-700 bg-gray-100 border dark:border-slate-600 border-gray-200 dark:text-white text-gray-800 text-sm placeholder:dark:text-slate-500 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-600/50"
+            />
+            <button
+              type="submit"
+              class="p-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white transition-colors"
+            >
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Chat Toggle Button -->
+      <button
+        onclick="toggleChat()"
+        id="chat-toggle"
+        class="w-14 h-14 rounded-2xl bg-primary-600 hover:bg-primary-700 text-white shadow-xl shadow-primary-600/30 flex items-center justify-center transition-all hover:scale-110 hover:-translate-y-1 animate-glow"
+      >
+        <i data-lucide="message-circle" class="w-6 h-6" id="chat-icon-open"></i>
+        <i data-lucide="x" class="w-6 h-6 hidden" id="chat-icon-close"></i>
+      </button>
+    </div>
+
+    <!-- ==================== COMMAND PALETTE ==================== -->
+    <div
+      id="cmd-overlay"
+      class="cmd-overlay hidden fixed inset-0 z-[70] flex items-start justify-center pt-[15vh] px-6"
+      onclick="closeCommandPalette(event)"
+    >
+      <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      <div
+        class="cmd-panel relative w-full max-w-lg dark:bg-dark-800 bg-white rounded-2xl border dark:border-slate-700 border-gray-200 shadow-2xl overflow-hidden"
+        onclick="event.stopPropagation()"
+      >
+        <!-- Search -->
+        <div
+          class="flex items-center gap-3 p-4 border-b dark:border-slate-700 border-gray-200"
+        >
+          <i
+            data-lucide="search"
+            class="w-5 h-5 dark:text-slate-400 text-slate-500"
+          ></i>
+          <input
+            id="cmd-input"
+            type="text"
+            placeholder="Type a command or search..."
+            class="flex-1 bg-transparent dark:text-white text-gray-800 text-base placeholder:dark:text-slate-500 placeholder:text-slate-400 focus:outline-none"
+            oninput="filterCommands(this.value)"
+          />
+          <kbd
+            class="px-2 py-0.5 rounded-md dark:bg-dark-700 bg-gray-100 dark:text-slate-400 text-slate-500 text-xs font-mono border dark:border-slate-600 border-gray-200"
+            >ESC</kbd
+          >
+        </div>
+        <!-- Commands List -->
+        <div id="cmd-list" class="max-h-72 overflow-y-auto p-2">
+          <p
+            class="px-3 py-2 text-xs font-bold dark:text-slate-500 text-slate-400 uppercase tracking-wider"
+          >
+            Navigation
+          </p>
+          <button
+            onclick="cmdNavigate('#hero')"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="home" class="w-4 h-4 text-primary-600"></i> Go to
+            Home
+          </button>
+          <button
+            onclick="cmdNavigate('#about')"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="user" class="w-4 h-4 text-primary-600"></i> Go to
+            About
+          </button>
+          <button
+            onclick="cmdNavigate('#skills')"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="code-2" class="w-4 h-4 text-primary-600"></i> Go to
+            Skills
+          </button>
+          <button
+            onclick="cmdNavigate('#projects')"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="folder-open" class="w-4 h-4 text-primary-600"></i>
+            Go to Projects
+          </button>
+          <button
+            onclick="cmdNavigate('#experience')"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="briefcase" class="w-4 h-4 text-primary-600"></i> Go
+            to Experience
+          </button>
+          <button
+            onclick="cmdNavigate('#contact')"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="mail" class="w-4 h-4 text-primary-600"></i> Go to
+            Contact
+          </button>
+          <p
+            class="px-3 py-2 mt-2 text-xs font-bold dark:text-slate-500 text-slate-400 uppercase tracking-wider"
+          >
+            Actions
+          </p>
+          <button
+            onclick="
+              showToast('Resume download started!');
+              closeCommandPalette();
+            "
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="download" class="w-4 h-4 text-green-500"
+              ><a
+                href="img/Anshu's Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              ></a
+            ></i>
+            Download Resume
+          </button>
+          <button
+            onclick="
+              toggleTheme();
+              closeCommandPalette();
+            "
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="moon" class="w-4 h-4 text-amber-500"></i> Toggle
+            Theme
+          </button>
+          <button
+            onclick="
+              toggleChat();
+              closeCommandPalette();
+            "
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i data-lucide="message-circle" class="w-4 h-4 text-cyan-500"></i>
+            Open AI Chat
+          </button>
+          <a
+            href="https://github.com/"
+            target="_blank"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i
+              data-lucide="github"
+              class="w-4 h-4 dark:text-slate-400 text-slate-500"
+            ></i>
+            Open GitHub
+          </a>
+          <a
+            href="mailto:anshukumar71012@gmail.com"
+            class="cmd-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl dark:hover:bg-dark-700 hover:bg-gray-50 dark:text-slate-300 text-slate-600 text-sm transition-colors text-left"
+          >
+            <i
+              data-lucide="mail"
+              class="w-4 h-4 dark:text-slate-400 text-slate-500"
+            ></i>
+            Send Email
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TOAST CONTAINER ==================== -->
+    <div
+      id="toast-container"
+      class="fixed top-24 right-6 z-[80] space-y-3"
+    ></div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+      // ===== Initialize Lucide Icons =====
+      lucide.createIcons();
+
+      // ===== PARTICLE SYSTEM =====
+      const canvas = document.getElementById("particles-canvas");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
+      let mouse = { x: null, y: null };
+
+      function resizeCanvas() {
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 2 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 0.5;
+          this.speedY = (Math.random() - 0.5) * 0.5;
+          this.opacity = Math.random() * 0.5 + 0.1;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.x < 0) this.x = canvas.width;
+          if (this.y > canvas.height) this.y = 0;
+          if (this.y < 0) this.y = canvas.height;
+
+          if (mouse.x && mouse.y) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 150) {
+              this.x -= dx * 0.01;
+              this.y -= dy * 0.01;
+            }
+          }
+        }
+        draw() {
+          const isDark = document.documentElement.classList.contains("dark");
+          ctx.fillStyle = isDark
+            ? `rgba(124, 58, 237, ${this.opacity})`
+            : `rgba(124, 58, 237, ${this.opacity * 0.5})`;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.min(
+          80,
+          Math.floor((canvas.width * canvas.height) / 15000),
+        );
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+      initParticles();
+
+      function connectParticles() {
+        const isDark = document.documentElement.classList.contains("dark");
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              const opacity = (1 - dist / 120) * (isDark ? 0.15 : 0.08);
+              ctx.strokeStyle = `rgba(124, 58, 237, ${opacity})`;
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        connectParticles();
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+
+      document.getElementById("hero").addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+      document.getElementById("hero").addEventListener("mouseleave", () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      // ===== TYPING EFFECT =====
+      const roles = [
+        "Full Stack Developer",
+        "AI Enthusiast",
+        "React Specialist",
+        "Creative Designer",
+        "Problem Solver",
+      ];
+      let roleIndex = 0,
+        charIndex = 0,
+        isDeleting = false;
+      const typingEl = document.getElementById("typing-text");
+
+      function typeEffect() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+          typingEl.textContent = currentRole.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingEl.textContent = currentRole.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let speed = isDeleting ? 40 : 80;
+        if (!isDeleting && charIndex === currentRole.length) {
+          speed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          speed = 500;
+        }
+        setTimeout(typeEffect, speed);
+      }
+      typeEffect();
+
+      // ===== DARK/LIGHT MODE =====
+      function toggleTheme() {
+        const html = document.documentElement;
+        html.classList.toggle("dark");
+        html.classList.toggle("light");
+        localStorage.setItem(
+          "theme",
+          html.classList.contains("dark") ? "dark" : "light",
+        );
+        lucide.createIcons();
+      }
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.className = savedTheme + " scroll-smooth";
+
+      // ===== MOBILE MENU =====
+      function toggleMobileMenu() {
+        document.getElementById("mobile-menu").classList.toggle("open");
+      }
+
+      // ===== SCROLL REVEAL =====
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              // Animate skill bars
+              entry.target
+                .querySelectorAll(".skill-progress")
+                .forEach((bar) => {
+                  bar.classList.add("animated");
+                });
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
+
+      // ===== COUNTER ANIMATION =====
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const target = parseInt(el.dataset.target);
+              let current = 0;
+              const increment = target / 40;
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  el.textContent = target + "+";
+                  clearInterval(timer);
+                } else {
+                  el.textContent = Math.floor(current) + "+";
+                }
+              }, 40);
+              counterObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      document
+        .querySelectorAll(".counter")
+        .forEach((el) => counterObserver.observe(el));
+
+      // ===== PROJECT FILTERS =====
+      function filterProjects(category) {
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.filter === category);
+        });
+        document.querySelectorAll(".project-card").forEach((card) => {
+          if (category === "all" || card.dataset.category === category) {
+            card.style.display = "";
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            setTimeout(() => {
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            }, 50);
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // ===== TESTIMONIAL CAROUSEL =====
+      let currentTestimonial = 0;
+      const totalTestimonials = 3;
+
+      function updateTestimonial() {
+        const track = document.getElementById("testimonial-track");
+        track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        document
+          .querySelectorAll("#testimonial-dots button")
+          .forEach((dot, i) => {
+            dot.className = `w-2.5 h-2.5 rounded-full transition-all ${i === currentTestimonial ? "bg-primary-600 w-6" : "dark:bg-dark-600 bg-gray-300"}`;
+          });
+      }
+
+      function moveTestimonial(dir) {
+        currentTestimonial =
+          (currentTestimonial + dir + totalTestimonials) % totalTestimonials;
+        updateTestimonial();
+      }
+
+      function goToTestimonial(index) {
+        currentTestimonial = index;
+        updateTestimonial();
+      }
+
+      // Auto-advance testimonials
+      setInterval(() => moveTestimonial(1), 6000);
+
+      // ===== CONTACT FORM =====
+      function handleSubmit(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML =
+          '<svg class="animate-spin w-5 h-5" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Sending...';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.disabled = false;
+          e.target.reset();
+          showToast("Message sent successfully! I'll get back to you soon. 🎉");
+        }, 1500);
+      }
+
+      // ===== TOAST NOTIFICATIONS =====
+      function showToast(message) {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className =
+          "toast flex items-center gap-3 px-5 py-3 rounded-xl dark:bg-dark-700 bg-white border dark:border-slate-600 border-gray-200 shadow-xl max-w-sm";
+        toast.innerHTML = `
+                <div class="w-8 h-8 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-green-400"></i>
+                </div>
+                <p class="text-sm dark:text-white text-gray-800">${message}</p>
+            `;
+        container.appendChild(toast);
+        lucide.createIcons();
+        setTimeout(() => toast.remove(), 3000);
+      }
+
+      // ===== AI CHAT =====
+      let chatOpen = false;
+
+      function toggleChat() {
+        chatOpen = !chatOpen;
+        document
+          .getElementById("chat-panel")
+          .classList.toggle("open", chatOpen);
+        document
+          .getElementById("chat-icon-open")
+          .classList.toggle("hidden", chatOpen);
+        document
+          .getElementById("chat-icon-close")
+          .classList.toggle("hidden", !chatOpen);
+        if (chatOpen) {
+          setTimeout(() => document.getElementById("chat-input").focus(), 300);
+        }
+      }
+
+      const chatResponses = {
+        "tech stack":
+          "Anshu works with a modern tech stack:\n\n🟣 **Frontend**: React.js, Next.js, Tailwind CSS, shadcn/ui, Material UI, Redux Toolkit\n🟢 **Backend**: Node.js, Express.js, MongoDB, PostgreSQL, REST APIs\n🧠 **AI/LLM**: OpenAI, LangChain, RAG, FAISS Vector DB\n🔧 **Tools**: Git, GitHub, VS Code, Postman",
+        "ai projects":
+          "Anshu has built an impressive **AI Chatbot (RAG-Based)** using:\n\n• LangChain for orchestration\n• RAG for context-aware responses\n• FAISS for vector search\n• OpenAI API for LLM\n• Full-stack with Node.js + React.js\n\nIt retrieves from custom knowledge sources and delivers accurate, grounded responses! 🤖",
+        hire: "Great choice! Here's how to hire Anshu:\n\n📧 **Email**: anshukumar71012@gmail.com\n📱 **Phone**: +91 9241778197\n💬 **WhatsApp**: wa.me/919241778197\n\nHe's currently available for freelance projects, internships, and full-time opportunities! 💪",
+        experience:
+          "Anshu is a **Frontend Developer Intern** at a Tech Startup (Remote, since Jan 2024). He:\n\n• Built responsive web interfaces with React.js\n• Developed reusable UI components\n• Reduced page load times by ~25%\n• Works with Agile workflows & Git\n\nHe's also pursuing B.Tech CSE (2024-2028).",
+        skills:
+          "Anshu's key skills:\n\n⚛️ React.js, Next.js, Tailwind CSS\n🟢 Node.js, Express.js, MongoDB\n🧠 OpenAI, LangChain, RAG, FAISS\n🎨 HTML5, CSS3, JavaScript ES6+\n📦 Redux Toolkit, React Router\n🔗 RESTful APIs, SQL\n🔧 Git, GitHub, Postman",
+        resume:
+          "You can download Anshu's resume by clicking the 'Download Resume' button in the hero section, or use the command palette (Ctrl+K) and select 'Download Resume'. 📄",
+        hello:
+          "Hello! 👋 Welcome to Anshu's portfolio. I can help you learn about his skills, projects, experience, or how to get in touch. What would you like to know?",
+        hi: "Hi there! 👋 Great to see you on Anshu's portfolio. Ask me anything about his skills, projects, or how to hire him!",
+      };
+
+      function getChatResponse(message) {
+        const lower = message.toLowerCase();
+        for (const [key, response] of Object.entries(chatResponses)) {
+          if (lower.includes(key)) return response;
+        }
+        if (lower.includes("project"))
+          return "Anshu has built 4+ projects including an AI Chatbot (RAG-Based), Task Management App, E-Commerce Clone, and this Portfolio. Which one interests you? 🚀";
+        if (
+          lower.includes("contact") ||
+          lower.includes("email") ||
+          lower.includes("phone")
+        )
+          return "You can reach Anshu at:\n\n📧 anshukumar71012@gmail.com\n📱 +91 9241778197\n💬 WhatsApp: wa.me/919241778197";
+        if (lower.includes("thank"))
+          return "You're welcome! 😊 Feel free to reach out anytime. Have a great day!";
+        return "I can help you with info about Anshu's tech stack, projects, experience, skills, or how to hire him. Try asking about any of these! 💡";
+      }
+
+      function addChatMessage(text, isUser) {
+        const container = document.getElementById("chat-messages");
+        const div = document.createElement("div");
+        div.className = isUser ? "flex gap-2 justify-end" : "flex gap-2";
+
+        // Simple markdown-like formatting
+        let formatted = text
+          .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+          .replace(/\n/g, "<br>");
+
+        if (isUser) {
+          div.innerHTML = `<div class="bg-primary-600 rounded-xl rounded-tr-sm p-3 max-w-[80%]"><p class="text-sm text-white">${formatted}</p></div>`;
+        } else {
+          div.innerHTML = `
+                    <div class="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"></path></svg>
+                    </div>
+                    <div class="dark:bg-dark-700 bg-white rounded-xl rounded-tl-sm p-3 max-w-[80%]">
+                        <p class="text-sm dark:text-slate-300 text-slate-600">${formatted}</p>
+                    </div>
+                `;
+        }
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+      }
+
+      function sendChatMessage(e) {
+        e.preventDefault();
+        const input = document.getElementById("chat-input");
+        const message = input.value.trim();
+        if (!message) return;
+
+        addChatMessage(message, true);
+        input.value = "";
+
+        // Typing indicator
+        const container = document.getElementById("chat-messages");
+        const typing = document.createElement("div");
+        typing.className = "flex gap-2 typing-indicator";
+        typing.innerHTML = `
+                <div class="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"></path></svg>
+                </div>
+                <div class="dark:bg-dark-700 bg-white rounded-xl rounded-tl-sm p-3">
+                    <div class="flex gap-1"><span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay:0ms"></span><span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay:150ms"></span><span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay:300ms"></span></div>
+                </div>
+            `;
+        container.appendChild(typing);
+        container.scrollTop = container.scrollHeight;
+
+        setTimeout(
+          () => {
+            typing.remove();
+            addChatMessage(getChatResponse(message), false);
+          },
+          1000 + Math.random() * 500,
+        );
+      }
+
+      function sendQuickMessage(msg) {
+        document.getElementById("chat-input").value = msg;
+        sendChatMessage(new Event("submit"));
+      }
+
+      // ===== COMMAND PALETTE =====
+      function openCommandPalette() {
+        const overlay = document.getElementById("cmd-overlay");
+        overlay.classList.remove("hidden");
+        setTimeout(() => document.getElementById("cmd-input").focus(), 100);
+      }
+
+      function closeCommandPalette(e) {
+        if (
+          e &&
+          e.target !== e.currentTarget &&
+          !e.target.closest('[onclick*="closeCommandPalette"]')
+        )
+          return;
+        document.getElementById("cmd-overlay").classList.add("hidden");
+        document.getElementById("cmd-input").value = "";
+        filterCommands("");
+      }
+
+      function cmdNavigate(section) {
+        closeCommandPalette();
+        document.querySelector(section).scrollIntoView({ behavior: "smooth" });
+      }
+
+      function filterCommands(query) {
+        const items = document.querySelectorAll(".cmd-item");
+        const lower = query.toLowerCase();
+        items.forEach((item) => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(lower) ? "" : "none";
+        });
+      }
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+          e.preventDefault();
+          const overlay = document.getElementById("cmd-overlay");
+          if (overlay.classList.contains("hidden")) {
+            openCommandPalette();
+          } else {
+            closeCommandPalette();
+          }
+        }
+        if (e.key === "Escape") {
+          closeCommandPalette();
+          if (chatOpen) toggleChat();
+        }
+      });
+
+      // ===== NAVBAR SCROLL EFFECT =====
+      let lastScroll = 0;
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        const scroll = window.scrollY;
+        if (scroll > 100) {
+          navbar.style.boxShadow = "0 4px 30px rgba(0,0,0,0.1)";
+        } else {
+          navbar.style.boxShadow = "none";
+        }
+        lastScroll = scroll;
+
+        // Active nav link
+        const sections = [
+          "hero",
+          "about",
+          "skills",
+          "projects",
+          "experience",
+          "contact",
+        ];
+        sections.forEach((id) => {
+          const section = document.getElementById(id);
+          const link = document.querySelector(`.nav-link[href="#${id}"]`);
+          if (section && link) {
+            const rect = section.getBoundingClientRect();
+            link.classList.toggle(
+              "active",
+              rect.top <= 150 && rect.bottom >= 150,
+            );
+          }
+        });
+      });
+      // user defines sendEmail function for contact form (using EmailJS)
+      function sendEmail() {
+        const templateParams = {
+          name: document.querySelector("#name").value,
+          email: document.querySelector("#email").value,
+          subject: document.querySelector("#subject").value,
+          message: document.querySelector("#message").value,
+        };
+        emailjs.send("service_ysv0n7d", "template_v4ill5a", templateParams);
+      }
+
+      // Re-init icons after dynamic content
+      setTimeout(() => lucide.createIcons(), 100);
+    </script>
+  </body>
+</html>
